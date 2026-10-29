@@ -1,11 +1,14 @@
-// Service worker : permet à Cadence de fonctionner sans connexion.
-// Changez VERSION à chaque mise à jour de index.html pour forcer le rafraîchissement.
-const VERSION = 'cadence-v1';
-const ASSETS = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './apple-touch-icon.png'];
+// Service worker : fonctionnement hors ligne + mises à jour.
+// À chaque modification de index.html, changez VERSION (ex. cadence-v3) :
+// l’app affichera alors « Une nouvelle version est prête ».
+const VERSION = 'cadence-v3';
+const ASSETS = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png',
+  './apple-touch-icon.png', './apple-touch-icon-clair.png', './apple-touch-icon-bleu.png'];
 
 self.addEventListener('install', e => {
-  e.waitUntil(caches.open(VERSION).then(c => c.addAll(ASSETS)).then(() => self.skipWaiting()));
+  e.waitUntil(caches.open(VERSION).then(c => c.addAll(ASSETS)));
 });
+self.addEventListener('message', e => { if (e.data === 'skip') self.skipWaiting(); });
 self.addEventListener('activate', e => {
   e.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(k => k !== VERSION).map(k => caches.delete(k)))).then(() => self.clients.claim()));
 });

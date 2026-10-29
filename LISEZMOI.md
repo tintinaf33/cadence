@@ -19,8 +19,13 @@ Cela marche aussi depuis l’iPhone dans Safari (en « version ordinateur »), m
 3. Lancez Cadence depuis son icône : plein écran, et fonctionne ensuite sans connexion.
 
 ## Mettre à jour l’app
-Remplacez index.html sur GitHub, et changez `cadence-v1` en `cadence-v2` dans sw.js.
-Fermez puis rouvrez l’app (deux fois si besoin) pour voir la nouvelle version.
+1. Sur GitHub, ouvrez votre dépôt puis **Add file → Upload files**.
+2. Glissez les nouveaux fichiers : ils remplacent les anciens. Validez avec **Commit changes**.
+3. Ouvrez Cadence sur l’iPhone : après quelques secondes, un bandeau
+   « Une nouvelle version de Cadence est prête » apparaît. Touchez **Mettre à jour**.
+
+Pour vos prochaines modifications : changez toujours le numéro dans sw.js
+(`cadence-v2` → `cadence-v3`…), sinon l’app ne détecte pas la mise à jour.
 
 ## Bon à savoir
 - Laissez l’app ouverte à l’écran pendant la séance : iOS met en pause les apps web en arrière-plan
